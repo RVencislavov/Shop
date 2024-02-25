@@ -8,6 +8,6 @@ Docker Desktop: For creating and managing the application's containers.
 
 
 Clone the Repository 
-git clone <repository-url> --  > Navigate to the Application Directory using cd <application-directory-path> --   >  docker-compose up
+git clone <repository-url> --  > Navigate to the Application Directory using cd /your/path/to/the/application <application-directory-path> --   >  docker-compose up
 
        
