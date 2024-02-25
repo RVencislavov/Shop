@@ -12,7 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "ShoppingCartItems")
+@Table(name = "shoppingCartItems")
 public class ShoppingCartItems {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
