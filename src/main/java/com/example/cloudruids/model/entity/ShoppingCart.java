@@ -8,17 +8,16 @@ import lombok.Setter;
 
 import java.util.List;
 
-@Entity
+@Entity(name = "shopping_cart")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "shoppingCart")
 public class ShoppingCart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ShoppingCartItems> items;
 }

@@ -11,8 +11,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "shoppingCartItems")
+@Entity(name = "shopping_cart_items")
 public class ShoppingCartItems {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,11 +24,11 @@ public class ShoppingCartItems {
     private DealType dealType;
 
     @ManyToOne
-    @JoinColumn(name = "cartId", referencedColumnName = "id")
+    @JoinColumn(name = "cart_id", referencedColumnName = "id")
     private ShoppingCart cart;
 
     @ManyToOne
-    @JoinColumn(name = "productId", referencedColumnName = "id")
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Products product;
 
 }

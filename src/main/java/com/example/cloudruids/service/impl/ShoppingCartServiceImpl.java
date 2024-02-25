@@ -73,36 +73,29 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     private double calculateDiscounts(List<ShoppingCartItems> items) {
         double discount = 0;
 
-        int totalTwoForThreeItems = items.stream()
-                .filter(item -> item.getDealType() == DealType.TWO_FOR_THREE)
-                .mapToInt(ShoppingCartItems::getQuantity)
-                .sum();
-
-        int freeItems = totalTwoForThreeItems / 3;
-
         List<ShoppingCartItems> sortedTwoForThreeItems = items.stream()
                 .filter(item -> item.getDealType() == DealType.TWO_FOR_THREE)
-                .sorted((item1, item2) -> Double.compare(item2.getProduct().getPrice(), item1.getProduct().getPrice())) // Sort by price in descending
-                .toList();
+                .sorted(Comparator.comparingDouble(item -> item.getProduct().getPrice()))
+                .collect(Collectors.toList());
 
+        int itemsProcessedForTwoForThree = 0;
         for (ShoppingCartItems item : sortedTwoForThreeItems) {
-            while (item.getQuantity() > 0 && freeItems > 0) {
-                discount += item.getProduct().getPrice();
-                item.setQuantity(item.getQuantity() - 1);
-                freeItems--;
-            }
+            int eligibleForDiscount = item.getQuantity() / 3;
+            discount += eligibleForDiscount * item.getProduct().getPrice();
+            itemsProcessedForTwoForThree += eligibleForDiscount * 3;
         }
 
         List<ShoppingCartItems> halfPriceItems = items.stream()
                 .filter(item -> item.getDealType() == DealType.BUY_ONE_GET_ONE_HALF_PRICE)
-                .toList();
+                .collect(Collectors.toList());
 
         for (ShoppingCartItems item : halfPriceItems) {
-            discount += ((double) item.getQuantity() / 2) * (item.getProduct().getPrice() / 2);
+            discount += (item.getQuantity() / 2) * (item.getProduct().getPrice() / 2);
         }
 
         return discount;
     }
+
 
 
 }

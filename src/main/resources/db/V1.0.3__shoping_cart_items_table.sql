@@ -1,10 +1,10 @@
-CREATE TABLE shoppingCartItems
+CREATE TABLE shopping_cart_items
 (
     id        INT AUTO_INCREMENT PRIMARY KEY,
-    productId INT,
-    cartId    INT,
+    product_id INT,
+    cart_id    INT,
     quantity  INT NOT NULL,
-    dealType  VARCHAR(25),
-    FOREIGN KEY (productId) REFERENCES products (id),
-    FOREIGN KEY (cartId) REFERENCES shoppingCart (id)
+    deal_type  VARCHAR(30),
+    FOREIGN KEY (product_id) REFERENCES products (id),
+    FOREIGN KEY (cart_id) REFERENCES shopping_cart (id)
 );
