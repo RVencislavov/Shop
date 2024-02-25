@@ -1,0 +1,32 @@
+version: '3.4'
+
+services:
+  mysql-container:
+    image: mysql:8.0.0
+    environment:
+      MYSQL_ROOT_PASSWORD: pa$$
+      MYSQL_DATABASE: shop
+      MYSQL_USER: root
+      MYSQL_PASSWORD: pa$$
+    volumes:
+      - mysql-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - app-network
+
+  your-java-app:
+    build: .
+    depends_on:
+      - mysql-container
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network
+
+volumes:
+  mysql-data:
+
+networks:
+  app-network:
+    driver: bridge

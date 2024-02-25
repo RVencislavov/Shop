@@ -1,0 +1,4 @@
+CREATE TABLE ShoppingCart
+(
+    id INT AUTO_INCREMENT PRIMARY KEY
+);

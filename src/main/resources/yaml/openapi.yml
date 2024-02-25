@@ -1,0 +1,78 @@
+openapi: 3.0.0
+info:
+  title: Cloud Ruids API
+  description: API definitions for Cloud Ruids shopping system
+  version: 1.0.0
+paths: {}
+components:
+  schemas:
+    OrderDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        totalPrice:
+          type: number
+          format: double
+        cart:
+          $ref: '#/components/schemas/ShoppingCartDto'
+      required:
+        - totalPrice
+        - cart
+
+    ProductsDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        price:
+          type: number
+          format: double
+        deal:
+          type: string
+          enum:
+            - NONE
+            - TWO_FOR_THREE
+            - BUY_ONE_GET_ONE_HALF_PRICE
+      required:
+        - name
+        - price
+        - deal
+
+    ShoppingCartDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ShoppingCartItemsDto'
+
+    ShoppingCartItemsDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        quantity:
+          type: integer
+        cart:
+          $ref: '#/components/schemas/ShoppingCartDto'
+        product:
+          $ref: '#/components/schemas/ProductsDto'
+      required:
+        - quantity
+        - product
+
+    DealType:
+      type: string
+      enum:
+        - NONE
+        - TWO_FOR_THREE
+        - BUY_ONE_GET_ONE_HALF_PRICE
