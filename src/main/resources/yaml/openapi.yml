@@ -6,7 +6,7 @@ info:
 paths: {}
 components:
   schemas:
-    OrderDto:
+    OrderRestDto:
       type: object
       properties:
         id:
@@ -16,12 +16,12 @@ components:
           type: number
           format: double
         cart:
-          $ref: '#/components/schemas/ShoppingCartDto'
+          $ref: '#/components/schemas/ShoppingCartRestDto'
       required:
         - totalPrice
         - cart
 
-    ProductsDto:
+    ProductsRestDto:
       type: object
       properties:
         id:
@@ -43,7 +43,7 @@ components:
         - price
         - deal
 
-    ShoppingCartDto:
+    ShoppingCartRestDto:
       type: object
       properties:
         id:
@@ -52,9 +52,9 @@ components:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/ShoppingCartItemsDto'
+            $ref: '#/components/schemas/ShoppingCartItemsRestDto'
 
-    ShoppingCartItemsDto:
+    ShoppingCartItemsRestDto:
       type: object
       properties:
         id:
@@ -63,9 +63,9 @@ components:
         quantity:
           type: integer
         cart:
-          $ref: '#/components/schemas/ShoppingCartDto'
+          $ref: '#/components/schemas/ShoppingCartRestDto'
         product:
-          $ref: '#/components/schemas/ProductsDto'
+          $ref: '#/components/schemas/ProductsRestDto'
       required:
         - quantity
         - product
