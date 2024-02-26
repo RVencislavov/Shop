@@ -62,8 +62,8 @@ class ShoppingCartServiceImplTest {
         mockCart.setItems(List.of(
                 createShoppingCartItem(DealType.TWO_FOR_THREE, 1, 0.50),
                 createShoppingCartItem(DealType.TWO_FOR_THREE, 3, 0.40),
-                createShoppingCartItem(DealType.TWO_FOR_THREE, 1, 0.0),
-                createShoppingCartItem(DealType.BUY_ONE_GET_ONE_HALF_PRICE, 2, 50.00)
+                createShoppingCartItem(DealType.TWO_FOR_THREE, 1, 0.30),
+                createShoppingCartItem(DealType.BUY_ONE_GET_ONE_HALF_PRICE, 2, 0.26)
         ));
 
         when(shoppingCartRepository.findById(cartId)).thenReturn(Optional.of(mockCart));
